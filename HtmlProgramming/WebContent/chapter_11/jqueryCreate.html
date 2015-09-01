@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function() {
+				$("#btnAdd").on("click", function() {
+					for(var i = 0; i < 10; i++) {
+						var $list = $("<li>list" + i + "</li>").css({
+							color: '#3d3d3d',
+							backgroundColor: '#7f7f7f'
+						});
+						
+						$("#list").append($list);
+						
+						$list.appendTo($("#list"));
+						
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<button id="btnAdd">동적 추가</button>
+		<hr/>
+		
+		<ul id="list">
+			
+		</ul>
+	</body>
+</html>

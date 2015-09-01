@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+		
+		<script>
+			$(function() {
+				$("#btn1").on("click", function() {
+					console.log("asynchronous network begin");
+					$.ajax("ajax01.jsp",{ 
+						success: function() {
+							console.log("success!");
+						}
+					});
+					
+					$.ajax({
+						url: "ajax01.jsp",
+						success: function() {
+							console.log("success 2!");
+						}
+					});
+					console.log("continueing code");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<button id="btn1">기본Ajax</button>
+		<hr/>
+		<div id="result1" style="width:300px; height: 100px; border: 1px solid black">
+		</div>
+	</body>
+</html>

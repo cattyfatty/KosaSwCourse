@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+		<script>
+			$(function() {
+				//input 1
+				$("#input_1").on("keydown", function() {
+					if(6 <= $("#input_1").val().length) {
+						$("#input_2").focus();
+					}
+				});
+				
+				//input 2
+				$("#input_2").on("keydown", function(event) {
+					var e = e || window.event;
+					if(e.keyCode == 8 && $("#input_2").val().length == 0) {
+						$("#input_1").focus();
+					}
+				});
+				
+				var id;
+				$("#btnStart").on("click", function() {
+					// how 1
+					/* id = setInterval(function() {
+						console.log("hungry");
+					}, 1000); */
+					
+					// how 2
+					funStart();
+				});
+				
+				function funStart() {
+					console.log("hungry");
+					id = setTimeout(funStart, 1000);
+				}
+				
+				$("#btnStop").on("click", function() {
+					// how 1
+					/* clearInterval(id); */
+					
+					// how 2
+					clearTimeout(id);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input id="input_1" type="text" maxlength="6" />
+		<span>-</span>
+		<input id="input_2" type="text" maxlength="7" />
+		
+		<button id="btnStart">Start</button>
+		<button id="btnStop">Stop</button>
+		<img id="image"/>
+	</body>
+</html>

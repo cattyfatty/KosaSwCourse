@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		
+		<style type="text/css">
+			div>div {display: inline-block; float: left; margin: 10px; position: absolute; top: 0; left: 0; overflow: hidden;}
+			#out {display: none;}
+		</style>
+		<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+		
+		<script>
+			var imgNo = 1;
+			$(function() {
+				setInterval(function() {
+					/* $("#ad").html("<img width='100%' height='100%' src='../common/images/miniroombg/miniroombg" + imgNo + ".gif'/>");
+					imgNo++;
+					if(imgNo == 11) {
+						imgNo = 1;
+					} */
+					$.ajax({
+						url: "ajax06.jsp",
+						success: function(data) {
+							$("#ad").html(data.trim());
+						}
+					});
+				}, 3000);
+			});
+		</script>
+	</head>
+	<body>
+		
+		<div id="ad" style="width:200px; height: 200px; border: 1px solid black">
+			
+		</div>
+	</body>
+</html>

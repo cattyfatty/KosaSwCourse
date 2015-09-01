@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		
+		<style type="text/css">
+			div>div {display: inline-block; float: left; margin: 10px; position: absolute; top: 0; left: 0; overflow: hidden;}
+			#out {display: none;}
+		</style>
+		<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+		
+		<script>
+			$(function() {
+				$("#login").click(function() {
+					var $mid = $("#mid").val();
+					var $mpw = $("#mpw").val();
+					$.ajax({
+						url: "ajax05.jsp",
+						method: "post",
+						data: {"mid": $mid, "mpw": $mpw},
+						success: function(data) {
+							var result = data.trim();
+							if(result == "success") {
+								$("#in").hide();
+								$("#out").show().css({"text-align":"center","vertical-algin":"middle"});
+								$("#out span").html($mid).css("display","inline-block");
+								$("#mid").val("");
+								$("#mpw").val("");
+							} else if(result=="wrong_id") {
+								
+							} else if(result=="wrong_pw") {
+								
+							}
+						}
+					});
+				});
+				
+				$("#logout").click(function() {
+					$("#in").show();
+					$("#out").hide();
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		
+		<div id="log" style="width:300px; height: 70px; border: 1px solid black">
+			<div id="in">
+				ID: <input id="mid" type="text" name="mid"/><br/>
+				PW: <input id="mpw" type="password" name="mpw"/><br/>
+				<input id="login" type="button" value="login"/>
+				<input id="join" type="button" value="join"/>
+			</div>
+			<div id="out" style="width:300px;">
+				<span></span> logged in <br/>
+				<input id="logout" type="button" value="logout"/>
+			</div>
+		</div>
+	</body>
+</html>
