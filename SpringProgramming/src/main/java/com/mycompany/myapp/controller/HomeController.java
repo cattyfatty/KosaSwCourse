@@ -24,9 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		System.out.println("HomeController-home()");
 		logger.info("HomeControlloer-home()");
-		logger.debug("HomeController-home()");
 		return "home";
 	}
 	

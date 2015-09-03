@@ -121,13 +121,22 @@
 			<div id="content2">
 				<div id="menu">
 					<ul>
-						<h4>Chap01</h4>
+						<h4>Chap07: Spring MVC</h4>
 						<li><a href="#">1절. XXXXXX</a></li>
 						<li><a href="#">2절. XXXXXX</a></li>
 						<li><a href="#">3절. XXXXXX</a></li>
 					</ul>
 					
 					<ul>
+						<h4>Spring Board</h4>
+						<li><a href="board/list" target="iframe">일반 게시판</a></li>
+						<li><a href="product/list" target="iframe">상품 게시판</a></li>
+						<li><a href="" target="iframe">사진 게시판</a></li>
+						<li><a href="#" target="iframe">자료 게시판</a></li>
+						
+					</ul>
+					
+					<!-- <ul>
 						<h4>Chap02</h4>
 						<li><a href="#">1절. XXXXXX</a></li>
 						<li><a href="#">2절. XXXXXX</a></li>
@@ -160,7 +169,7 @@
 						<li><a href="#">1절. XXXXXX</a></li>
 						<li><a href="#">2절. XXXXXX</a></li>
 						<li><a href="#">3절. XXXXXX</a></li>
-					</ul>
+					</ul> -->
 				</div>
 				<div id="content">
 					<iframe name="iframe" height="100%" width="100%"></iframe>
