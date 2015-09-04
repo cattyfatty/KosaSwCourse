@@ -19,7 +19,7 @@
 	
 	<body>
 		<h4>글쓰기</h4>
-		<form method="post" action="write">
+		<form method="post" action="write" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>제목</td>

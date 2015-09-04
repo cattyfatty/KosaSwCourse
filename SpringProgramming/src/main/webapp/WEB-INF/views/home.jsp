@@ -16,9 +16,12 @@
 				margin: 0px auto;
 				background-color: #292929;
 				color: #FFFFFF;
+				background: url("resources/image/bg2.jpg") no-repeat center center;
+				background-size: cover;
 			}	
 			/*------------------------------------*/				
 			#page {
+				
 				height: 100vh;
 				display: flex;
 				flex-direction: column;
@@ -64,18 +67,23 @@
 			/*------------------------------------*/
 			#content2 #menu {
 				width: 250px;
-				border: 3px solid #464646;	
+				border: 3px dotted #4646bf;	
 				border-radius: 10px;
 				padding: 10px;
-				overflow-y: scroll;
 			}
 			
 			#content2 #menu ul {
 				margin-top: 10px;
+				list-style: none;
 			}
 			
 			#content2 #menu ul h4 {
 				margin-top: 10px;
+			}
+			
+			#content2 #menu li:last-child {
+				padding-bottom: 5px;
+				border-bottom: 1.5px dotted #4646bf;
 			}
 			
 			#content2 #menu a {
@@ -111,13 +119,13 @@
 				<h1>SpringProgramming</h1>
 			</div>
 			
-			<div id="content1">
+		<!-- 	<div id="content1">
 				<div id="login"></div>
 				<div id="frontImage">
 					<img src="resources/image/frontImage.jpg"/>
 				</div>
 			</div>
-			
+			 -->
 			<div id="content2">
 				<div id="menu">
 					<ul>
@@ -177,7 +185,7 @@
 			</div>
 			
 			<div id="footer">
-				<h5>Your Name</h5>
+				<h5>Hak the Dreamer</h5>
 			</div>
 		</div>
 	</body>
