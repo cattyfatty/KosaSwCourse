@@ -29,8 +29,9 @@
 				border: 1px solid darkgray;
 				padding: 10px;
 				width: 90%;
-				height: 100px;
+				height: 150px;
 				font-size: 12px;
+				overflow-y: scroll;
 			}
 			
 			#part1 {display: flex;}
@@ -93,7 +94,7 @@
 		</div>
 				
 		<div id="buttonGroup">
-			<a href="list">목록</a>
+			<a href="list?pageNo=${pageNo}">목록</a>
 			<a href="updateForm?boardNo=${board.no }">수정</a>
 			<a href="delete?boardNo=${board.no }">삭제</a>
 		</div>		

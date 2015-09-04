@@ -27,12 +27,14 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping("/product/list")
-	public String list(Model model, @RequestParam(defaultValue = "1") int pageNo) {
+	public String list(Model model, @RequestParam(defaultValue = "1") int pageNo, HttpSession session) {
 		logger.info("list()");
 
 		int rowsPerPage = 10;
 		int pagesPerGroup = 5;
 
+		session.setAttribute("pageNo", pageNo);
+		
 		// 전체 게시물 수
 		int totalBoardNo = productService.getTotalProductNo();
 
@@ -78,34 +80,28 @@ public class ProductController {
 	}
 
 	@RequestMapping("/product/write")
-	public String write(String name, int price, int amount, String kind, String content, MultipartFile photo, HttpSession session) {
+	public String write(Product product, HttpSession session) {
 		logger.info("write()");
 		
 		String dirPath = null;
 		String originalFileName = null;
 		String filesystemName = null;
 		String contentType = null;
-		if(!photo.isEmpty()) {
+		if(!product.getPhoto().isEmpty()) {
 			// 파일 정보 얻기
 			ServletContext application = session.getServletContext();
 			dirPath = application.getRealPath("/resources/uploadfiles");
-			originalFileName = photo.getOriginalFilename();
+			originalFileName = product.getPhoto().getOriginalFilename();
 			filesystemName = System.currentTimeMillis() + "-" + originalFileName;
-			contentType = photo.getContentType();
+			contentType = product.getPhoto().getContentType();
 			
 			// 파일 저장하기
 			try {
-				photo.transferTo(new File(dirPath + "/" + filesystemName));
+				product.getPhoto().transferTo(new File(dirPath + "/" + filesystemName));
 			} catch (Exception e) {	e.printStackTrace(); }
 		}
 
-		Product product = new Product();
-		product.setName(name);
-		product.setPrice(price);
-		product.setAmount(amount);
-		product.setKind(kind);
-		product.setContent(content);
-		if(!photo.isEmpty()) {
+		if(!product.getPhoto().isEmpty()) {
 			product.setOriginalFileName(originalFileName);
 			product.setFilesystemName(filesystemName);
 			product.setContentType(contentType);
@@ -124,5 +120,24 @@ public class ProductController {
 		model.addAttribute("product", product);
 		
 		return "product/detail";
+	}
+	
+	@RequestMapping("/product/updateForm")
+	public String updateForm(int productNo, Model model) {
+		logger.info("updateForm()");
+		
+		Product product = productService.getProduct(productNo);
+		model.addAttribute("product", product);
+		
+		return "product/update";
+	}
+	
+	@RequestMapping("/product/update")
+	public String update(Product product, Model model) {
+		logger.info("update()");
+		
+		productService.modify(product);
+		
+		return "redirect:/product/detail?productNo" + product.getNo();
 	}
 }

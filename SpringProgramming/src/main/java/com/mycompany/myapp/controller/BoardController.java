@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -28,8 +29,10 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping("/board/list")
-	public String list(Model model, @RequestParam(defaultValue="1") int pageNo) {
+	public String list(Model model, @RequestParam(defaultValue="1") int pageNo, HttpSession session) {
 		logger.info("list()");
+		
+		session.setAttribute("pageNo", pageNo);
 		
 		int rowsPerPage = 10;
 		int pagesPerGroup = 5;
@@ -61,7 +64,7 @@ public class BoardController {
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
-		model.addAttribute("pageNo", pageNo);
+//		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("list", list);
 		
 		return "board/list";
@@ -74,33 +77,30 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/write")
-	public String write(String title, String writer, String content, @RequestParam(defaultValue="") MultipartFile attach, HttpSession session) {
+	/*public String write(String title, String writer, String content, @RequestParam(defaultValue="") MultipartFile attach, HttpSession session) {*/
+	public String write(Board board, HttpSession session) {
 		logger.info("write()");
 		String dirPath = null;
 		String originalFileName = null;
 		String filesystemName = null;
 		String contentType = null;
-		if(!attach.isEmpty()) {
+		if(!board.getAttach().isEmpty()) {
 			// 파일 정보 얻기
 			ServletContext application = session.getServletContext();
 			dirPath = application.getRealPath("/resources/uploadfiles");
-			originalFileName = attach.getOriginalFilename();
+			originalFileName = board.getAttach().getOriginalFilename();
 			filesystemName = System.currentTimeMillis() + "-" + originalFileName;
-			contentType = attach.getContentType();
+			contentType = board.getAttach().getContentType();
 			
 			// 파일 저장하기
 			try {
-				attach.transferTo(new File(dirPath + "/" + filesystemName));
+				board.getAttach().transferTo(new File(dirPath + "/" + filesystemName));
 			} catch (Exception e) {	e.printStackTrace(); }
 			
 		}
 		
 		// 데이터 베이스에 저장
-		Board board = new Board();
-		board.setTitle(title);
-		board.setContent(content);
-		board.setWriter(writer);
-		if(!attach.isEmpty()) {
+		if(!board.getAttach().isEmpty()) {
 			board.setOriginalFileName(originalFileName);
 			board.setFilesystemName(filesystemName);
 			board.setContentType(contentType);
@@ -112,15 +112,22 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/updateForm")
-	public String updateForm() {
+	public String updateForm(int boardNo, Model model) {
 		logger.info("updateForm()");
+		
+		Board board = boardService.getBoard(boardNo);
+		model.addAttribute("board", board);
+		
 		return "board/updateForm";
 	}
 	
 	@RequestMapping("/board/update")
-	public String update() {
+	public String update(Board board, Model model) {
 		logger.info("update()");
-		return "redirect:/board/list";
+		
+		boardService.modify(board);
+		
+		return "redirect:/board/detail?boardNo=" + board.getNo();
 	}
 	
 	@RequestMapping("/board/detail")
@@ -132,5 +139,14 @@ public class BoardController {
 		model.addAttribute("board", board);
 		
 		return "board/detail";
+	}
+	
+	@RequestMapping("/board/delete")
+	public String delete(int boardNo) {
+		logger.info("delete()");
+		
+		boardService.remove(boardNo);
+		
+		return "redirect:/board/list";
 	}
 }

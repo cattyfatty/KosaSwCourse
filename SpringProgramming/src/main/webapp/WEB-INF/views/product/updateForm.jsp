@@ -89,28 +89,28 @@
 	<body>
 		<h4>게시물 보기</h4>
 		<form id="modifyForm" name="modifyForm" method="post" action="update">		
-			<span class="title">번호:</span> 
-			<span class="content">${board.no}</span> 
-			<input type="hidden" name="no" value="${board.no }"/><br/>
+			<span class="title">상품번호:</span> 
+			<span class="content">${product.no}</span> 
+			<input type="hidden" name="no" value="${product.no }"/><br/>
 			
-			<span class="title">제목:</span> 
-			<input id="title" type="text" name="title" value="${board.title}"/> <br/>
+			<span class="title">상품이름:</span> 
+			<input id="title" type="text" name="title" value="${product.title}"/> <br/>
 			
-			<span class="title">글쓴이:</span> 
-			<span class="content">${board.writer}</span> <br/>
+			<span class="title">상품가격:</span> 
+			<span class="content">${product.writer}</span> <br/>
 			
-			<span class="title">날짜:</span> 
-			<span class="content">${board.date}</span> <br/>
+			<span class="title">상품수량:</span> 
+			<span class="content">${product.date}</span> <br/>
 			
-			<span class="title">조회수:</span> 
-			<span class="content">${board.hitcount}</span> <br/>
+			<span class="title">상품종류:</span> 
+			<span class="content">${product.hitcount}</span> <br/>
 			
-			<span class="title">내용:</span> <br/>
-			<textarea name="content" cols="50" rows="5">${board.content}</textarea>
+			<span class="title">상품설명:</span> <br/>
+			<textarea name="content" cols="50" rows="5">${product.content}</textarea>
 		</form>
 		<div id="buttonGroup">
 			<a href="javascript:sendData()">[수정]</a>
-			<a href="detail?boardNo=${board.no}">[취소]</a>
+			<a href="detail?productNo=${product.no}">[취소]</a>
 		</div>		
 	</body>
 </html>

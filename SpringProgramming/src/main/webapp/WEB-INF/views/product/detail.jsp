@@ -91,7 +91,7 @@
 		</div>
 				
 		<div id="buttonGroup">
-			<a href="list">목록</a>
+			<a href="list?pageNo=${pageNo}">목록</a>
 			<a href="updateForm?productNo=${product.no }">수정</a>
 			<a href="delete?productNo=${product.no }">삭제</a>
 		</div>		

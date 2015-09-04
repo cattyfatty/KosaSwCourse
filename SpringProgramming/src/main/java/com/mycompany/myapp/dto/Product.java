@@ -2,6 +2,8 @@ package com.mycompany.myapp.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Product {
 	private long no;
 	private String name;
@@ -12,7 +14,14 @@ public class Product {
 	private String originalFileName;
 	private String filesystemName;
 	private String contentType;
+	private MultipartFile photo;
 	
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
 	public String getOriginalFileName() {
 		return originalFileName;
 	}
