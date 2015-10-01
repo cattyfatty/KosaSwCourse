@@ -129,10 +129,12 @@
 			<div id="content2">
 				<div id="menu">
 					<ul>
-						<h4>Chap07: Spring MVC</h4>
-						<li><a href="#">1절. XXXXXX</a></li>
-						<li><a href="#">2절. XXXXXX</a></li>
-						<li><a href="#">3절. XXXXXX</a></li>
+						<h4>Spring Basic</h4>
+						<li><a href="chap07/index" target="iframe">Chap07: Spring MVC</a></li>
+						<li><a href="chap07/index" target="iframe">Chap08: Spring MVC: View</a></li>
+						<li><a href="chap07/index" target="iframe">Chap11: JDBC</a></li>
+						<li><a href="chap07/index" target="iframe">Chap12: Transaction</a></li>
+						<li><a href="#">Chap18: Spring unit test</a></li>
 					</ul>
 					
 					<ul>

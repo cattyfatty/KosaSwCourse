@@ -95,8 +95,8 @@
 				
 		<div id="buttonGroup">
 			<a href="list?pageNo=${pageNo}">목록</a>
-			<a href="updateForm?boardNo=${board.no }">수정</a>
-			<a href="delete?boardNo=${board.no }">삭제</a>
+			<a href="updateForm?bno=${board.no }">수정</a>
+			<a href="delete/${board.no }">삭제</a> <!-- RESTful -->
 		</div>		
 	</body>
 </html>
